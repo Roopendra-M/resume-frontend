@@ -1,0 +1,297 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* LIGHT defaults (root) */
+:root {
+  --glass-bg: rgba(0,0,0,0.04);
+  --glass-br: rgba(0,0,0,0.08);
+  --text-dim: #334155;
+}
+
+/* DARK overrides */
+:root.dark {
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-br: rgba(255,255,255,0.10);
+  --text-dim: rgba(255,255,255,0.7);
+}
+
+/* Glass effect base */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-br);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Gradient background */
+.gradient-bg {
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+}
+:root.dark .gradient-bg {
+  background: radial-gradient(1200px 600px at 50% -20%, rgba(99,102,241,0.25), transparent),
+              radial-gradient(900px 400px at 100% 0%, rgba(244,63,94,0.2), transparent),
+              radial-gradient(600px 300px at 0% 100%, rgba(34,211,238,0.15), transparent),
+              linear-gradient(180deg, #0f172a 0%, #020617 100%);
+}
+
+/* Navbar floating glass */
+.nav-glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-br);
+  backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  transition: all 0.3s ease-in-out;
+}
+:root.dark .nav-glass {
+  background: rgba(15, 23, 42, 0.75); /* slate-900 transparent */
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+
+/* Buttons */
+.glass-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-br);
+  backdrop-filter: blur(10px);
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Light mode hover */
+:root:not(.dark) .glass-btn:hover {
+  background: rgba(0,0,0,0.08);
+  border-color: rgba(0,0,0,0.15);
+}
+
+/* Dark mode neon hover */
+:root.dark .glass-btn:hover {
+  border-color: rgba(255,255,255,0.4);
+  box-shadow: 0 0 12px rgba(99,102,241,0.7), /* Indigo glow */
+              0 0 20px rgba(244,63,94,0.5);  /* Pink glow */
+  transform: translateY(-2px);
+}
+
+/* Inputs & forms */
+input, select, textarea {
+  color-scheme: dark;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--glass-br);
+  background: rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+}
+
+:root:not(.dark) input,
+:root:not(.dark) select,
+:root:not(.dark) textarea {
+  color-scheme: light;
+  background: white;
+  border: 1px solid #cbd5e1; /* slate-300 */
+}
+
+/* Glow effect for dark mode inputs */
+:root.dark input:focus,
+:root.dark select:focus,
+:root.dark textarea:focus {
+  outline: none;
+  border-color: rgba(99,102,241,0.8); /* indigo */
+  box-shadow: 0 0 12px rgba(99,102,241,0.6),
+              0 0 18px rgba(244,63,94,0.4);
+}
+
+/* Text adjustments */
+body {
+  @apply text-slate-900 dark:text-white;
+}
+
+/* Strong contrast for dark mode text */
+:root.dark a, 
+:root.dark label, 
+:root.dark h1, 
+:root.dark h2, 
+:root.dark h3, 
+:root.dark h4, 
+:root.dark h5, 
+:root.dark h6, 
+:root.dark p {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Dimmed text class */
+:root.dark .text-dim {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Footer Container */
+.footer-container {
+  margin-top: 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Grid Layout */
+.footer-grid {
+  max-width: 1280px;
+  margin: auto;
+  padding: 2.5rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  font-size: 0.9rem;
+}
+
+/* Headings */
+.footer-heading {
+  font-weight: 600;
+  color: #a5b4fc; /* indigo-300 */
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Text */
+.footer-text {
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+}
+
+/* Contact Links */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-links a:hover {
+  color: #818cf8; /* indigo-400 */
+}
+
+/* Newsletter */
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.newsletter-btn {
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: #4f46e5; /* indigo-600 */
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.2s ease;
+}
+
+.newsletter-btn:hover {
+  background: #6366f1; /* indigo-500 */
+  transform: translateY(-1px);
+}
+
+/* Footer Note */
+.footer-note {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Bottom Section */
+.footer-bottom {
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  padding-bottom: 1.5rem;
+}
+
+.text-dim { color: var(--text-dim); }
+.footer-container {
+  background-color: #333;
+  color: white;
+  padding: 40px;
+  margin-top: 20px;
+}
+
+.footer-heading {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.footer-text {
+  font-size: 1rem;
+  color: #ddd;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #a0aec0;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #f6e05e;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.875rem;
+}
+
+.footer-note {
+  font-size: 0.875rem;
+  color: #e2e8f0;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.newsletter-input {
+  padding: 8px;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.newsletter-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #4c51bf;
+  color: white;
+  border: none;
+}
